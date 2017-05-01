@@ -1,0 +1,19 @@
+.mark {
+    background-color: #79aec8;
+    border: solid medium black;
+}
+
+#header {
+    height: 70px ;
+}
+
+.markRow {
+    background-color: wheat;
+    border: solid medium black;
+    min-height: 40px
+}
+
+#footer {
+    min-height: 150px ;
+}
+

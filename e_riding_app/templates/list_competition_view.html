@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block TITLE %}список соревнований{% endblock TITLE %}
+
+{% block content %}
+    <h3 align="center">Список соревнований</h3>
+    <div class="col-xs-8 col-md-8 markRow">
+        <h4 align="center">Место проведения</h4>
+    </div>
+    <div class="col-xs-4 col-md-4 markRow">
+        <h4 align="center">Дата</h4>
+    </div>
+    {% for competition in list_competition %}
+        <div class="row">
+            <div class="col-xs-8 col-md-8 markRow">
+                <h5 align="center">{{ competition.place }}</h5>
+            </div>
+            <div class="col-xs-4 col-md-4 markRow">
+                <h5 align="center">{{ competition.begin }} - {{ competition.close }}</h5>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}
+
+{% block right %}
+    <h3>Реклама</h3>
+{% endblock right %}

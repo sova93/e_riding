@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block TITLE %}Добавление новой лошади{% endblock TITLE %}
+
+{% block content %}
+    <h3>Добавление новой лошади</h3>
+    <h2>{{ state }}</h2>
+    <form action="{% url 'create_horse' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Добавить" />
+    </form>
+{% endblock content %}
+
+{% block right %}
+    <h3>Реклама</h3>
+{% endblock right %}
