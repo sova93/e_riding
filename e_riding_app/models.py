@@ -4,8 +4,10 @@ from django.contrib.auth.models import AbstractUser
 
 
 class DescriptionStep(models.Model):
+    name = models.CharField(max_length=128)
     length = models.FloatField()
     #  step_map = models.ImageField()
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="description_step_user")
 
 
 class CustomUser(AbstractUser):
