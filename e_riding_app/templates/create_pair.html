@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block TITLE %}Добавление новой лошади{% endblock TITLE %}
+{% block TITLE %}Создание пары{% endblock TITLE %}
 
 {% block content %}
-    <h3>Добавление новой лошади</h3>
-    <form action="{% url 'create_horse' %}" method="post">
+    <h3>Создание новой пары</h3>
+    <form action="{% url 'create_pair' %}" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Добавить" />

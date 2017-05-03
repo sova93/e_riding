@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block TITLE %}список всех пар{% endblock TITLE %}
+
+{% block content %}
+    <h3 align="center">Список всех пар</h3>
+    <div class="col-xs-8 col-md-8 markRow">
+        <h4 align="center">Всадник</h4>
+    </div>
+    <div class="col-xs-4 col-md-4 markRow">
+        <h4 align="center">Лошадь</h4>
+    </div>
+    {% for pair in pairs %}
+        <div class="row">
+            <div class="col-xs-8 col-md-8 markRow">
+                <h5  align="center">{{ pair.rider }}</h5>
+            </div>
+            <div class="col-xs-4 col-md-4 markRow">
+                <h5 align="center">{{ pair.horse}}</h5>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}
+
+{% block right %}
+    <h3>Реклама</h3>
+{% endblock right %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block TITLE %}Пара на старте{% endblock TITLE %}
+
+{% block content %}
+    <h3>Регистрация пары {{ pair }} на старте</h3>
+    <form action="{% url 'create_pair_on_start' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Регистрация" >
+    </form>
+{% endblock content %}
+
+{% block right %}
+    <h3>Реклама</h3>
+{% endblock right %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block TITLE %}список команд{% endblock TITLE %}
+
+{% block content %}
+    <h4 align="center">Список команд на соревновании {{ competition.place }} ({{ competition.begin }} - {{ competition.close }})</h4>
+    {% for team in teams %}
+        <div class="row">
+            <div class="col-xs-12 col-md-12 markRow">
+                <li><a href="{% url 'list_team_view' team.id %}">{{ team.name }}</a></li>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}
+
+{% block right %}
+    <h3>Реклама</h3>
+{% endblock right %}

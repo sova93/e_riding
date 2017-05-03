@@ -25,39 +25,102 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-12 mark" id="header">
             {% block header %}
-                Header
+                <nav class="navbar navbar-default bg">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="{% url 'index' %}">
+                                <img class="pic_margin" alt="Brand" src="{% static "pic_nav.png"  %}" height=55  >
+                            </a>
+                        </div>
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
+                        </form>
+                        <form class="navbar-form navbar-left">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle " type="button" data-toggle="dropdown">Меню
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">О нас</a></li>
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Календарь соревнований</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Все</a></li>
+                                            <li><a href="#">Предстоящие</a></li>
+                                            <li><a href="#">Активные</a></li>
+                                            <li><a href="#">Прошедшие</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="dropdown-submenu">
+                                        <a href="#">Информация</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Организаторы</a></li>
+                                            <li><a href="#">Ветеринары</a></li>
+                                            <li><a href="#">Судьи</a></li>
+                                            <li><a href="#">Статистики</a></li>
+                                            <li><a href="#">Всадники</a></li>
+                                            <li><a href="#">Лошади</a></li>
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </form>
+                        <form class="navbar-form navbar-left">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle glyphicon glyphicon-user" type="button" data-toggle="dropdown">
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Вход</a></li>
+                                    <li><a href="#">Регистрация</a></li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
             {% endblock header %}
         </div>
     </div>
     <div class="row content_height">
-        <div class="col-xs-4 col-md-4 mark">
+        <div class="col-xs-3 col-md-3 mark">
             {% block links %}
-               <p> <a href="{% url 'create_competition' %}">Создание соревнований</a></p>
-               <p>  <a href="{% url 'list_competition_view' %}">Список соревнований</a> </p>
-               <p>  <a href="{% url 'create_horse' %}">Добавление новой лошади</a> </p>
-               <p>  <a href="{% url 'list_horses_view' %}">Список лошадей</a> </p>
-               <p>  <a href="{% url 'create_team' %}">Добавление новой команды</a> </p>
-{#               <p>  <a href="{% url 'list_team_view' %}">Состав команды</a> </p>#}
+                <p> <a href="{% url 'create_competition' %}">Создание соревнований</a></p>
+                <p>  <a href="{% url 'list_competition_view' %}">Список соревнований</a> </p>
+                <p>  <a href="{% url 'create_horse' %}">Добавление новой лошади</a> </p>
+                <p>  <a href="{% url 'list_horses_view' %}">Список лошадей</a> </p>
+                <p>  <a href="{% url 'list_pairs_all' %}">Список всех пар</a> </p>
+                <p>  <a href="{% url 'create_pair' %}">Создание пары</a> </p>
+                <p>  <a href="{% url 'create_team' %}">Добавление новой команды</a> </p>
+                <p>  <a href="{% url 'create_pair_on_start' %}">Добавление пары на старт</a> </p>
+                <p>  <a href="{% url 'create_description_step' %}">Добавление описания этапа</a> </p>
             {% endblock links %}
         </div>
-        <div class="col-xs-6 col-md-6 mark">
+        <div class="col-xs-7 col-md-7 mark">
             {% block content %}
             {% endblock content %}
         </div>
         <div class="col-xs-2 col-md-2 mark">
-            {% block right %}
-            {% endblock right %}
+            <row><h3 align="center">БФКС</h3></row>
+            <row><a href="http://bfks.by"><img class="pic" src="{% static "bfks.png"  %}" width="190"
+                                          height="130" alt="БФКС" align="middle"></a></row>
+            <row><h3 align="center">МФКС</h3></row>
+            <row><a href="http://www.fei.org"><img class="pic" src="{% static "brand.gif"  %}" width="190"
+                                          height="130" alt="БФКС" align="middle"></a></row>
+            <row><h3 align="center">РФКС</h3></row>
+            <row><a href="http://fksr.ru"><img class="pic" src="{% static "rf.jpg"  %}" width="190"
+                                          height="130" alt="БФКС" align="middle"></a></row>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12 mark" id="footer">
-            {% block footer %}
-                Footer
-            {% endblock footer %}
+
         </div>
     </div>
 </div>
@@ -70,5 +133,11 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 </body>
 </html>

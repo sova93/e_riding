@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block TITLE %}изменение данных о лошади{% endblock TITLE %}
+
+{% block content %}
+    <h3>Изменение данных о лошади</h3>
+    <form action="{% url 'update_horse_view' horse_pk %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Изменить" />
+    </form>
+{% endblock content %}
+
+{% block right %}
+    <h3>Реклама</h3>
+{% endblock right %}

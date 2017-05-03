@@ -30,6 +30,7 @@ class Horse(models.Model):
 
 
 class Team(models.Model):  # @TODO: review relations and fields in picture
+    name = models.CharField(max_length=20)
     pairs = models.ManyToManyField("Pair", related_name="team_pair")  # connection changed!
      # cosiak so sviaz'u
 
@@ -57,7 +58,7 @@ class PairOnStart(models.Model):
 class Pair(models.Model):
     rider = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='pair_rider')
     horse = models.ForeignKey(Horse, related_name='pair_horse')
-    pair_on_start = models.ForeignKey(PairOnStart, related_name='pair_on_start')
+    pair_on_start = models.ForeignKey(PairOnStart, related_name='pair_on_start', blank=True, null=True, default=None)
 
     def __str__(self):
         return "<Pair '%s - %s'>" % (self.rider, self.horse)

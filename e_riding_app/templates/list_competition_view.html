@@ -13,7 +13,7 @@
     {% for competition in list_competition %}
         <div class="row">
             <div class="col-xs-8 col-md-8 markRow">
-                <h5 align="center">{{ competition.place }}</h5>
+                <li><a href="{% url 'list_teams_view_on_competition' competition.id %}"> {{ competition.place }}</a></li>
             </div>
             <div class="col-xs-4 col-md-4 markRow">
                 <h5 align="center">{{ competition.begin }} - {{ competition.close }}</h5>
@@ -25,3 +25,4 @@
 {% block right %}
     <h3>Реклама</h3>
 {% endblock right %}
+
