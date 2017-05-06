@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block TITLE %}Добавление пользователя{% endblock TITLE %}
+
+{% block content %}
+    <h3 align="center">Добавление нового пользователя </h3>
+    <form action="{% url 'create_user' %}" method="post" >
+        {% csrf_token %}
+        <div class = "row">
+            <label><h4>Логин {{ form.username }}</h4></label>
+        </div>
+        <div class = "row">
+        <label><h4> Имя {{ form.first_name }}</h4></label>
+        </div>
+        <div class = "row">
+        <label><h4> Фамилия {{ form.last_name }}</h4></label>
+        </div>
+        <div class = "row">
+        <label><h4> Эл. почта {{ form.email }}</h4></label>
+        </div>
+        <div class = "row">
+        <label><h4> Телефон {{ form.phone }}</h4></label>
+        </div>
+        <div class = "row">
+        <label><h4> Дата рождения {{ form.birthday }}</h4></label>
+        </div>
+        <div class = "row">
+        <label><h4> Роль {{ form.groups}}</h4></label>
+        </div>
+        <div class = "row">
+        <label><h4> Пароль {{ form.password }}</h4></label>
+        </div>
+        <input type="submit" value="Добавить" />
+    </form>
+{% endblock content %}
+

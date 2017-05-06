@@ -51,7 +51,7 @@
                                     <li class="dropdown-submenu">
                                         <a href="#">Календарь соревнований</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#">Все</a></li>
+                                            <li><a href="{% url 'list_competition_view' %}">Все</a></li>
                                             <li><a href="#">Предстоящие</a></li>
                                             <li><a href="#">Активные</a></li>
                                             <li><a href="#">Прошедшие</a></li>
@@ -78,8 +78,8 @@
                                 <button class="btn btn-primary dropdown-toggle glyphicon glyphicon-user" type="button" data-toggle="dropdown">
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Вход</a></li>
-                                    <li><a href="#">Регистрация</a></li>
+                                    <li><a href="{% url 'user_authenticate' %}">Вход</a></li>
+                                    <li><a href="{% url 'create_user' %}">Регистрация</a></li>
                                 </ul>
                             </div>
                         </form>
@@ -100,6 +100,7 @@
                 <p>  <a href="{% url 'create_team' %}">Добавление новой команды</a> </p>
                 <p>  <a href="{% url 'create_pair_on_start' %}">Добавление пары на старт</a> </p>
                 <p>  <a href="{% url 'create_description_step' %}">Добавление описания этапа</a> </p>
+                <p>  <a href="{% url 'statistic_way' %}">Статистика по треку</a> </p>
             {% endblock links %}
         </div>
         <div class="col-xs-7 col-md-7 mark">
@@ -109,17 +110,43 @@
         <div class="col-xs-2 col-md-2 mark">
             <row><h3 align="center">БФКС</h3></row>
             <row><a href="http://bfks.by"><img class="pic" src="{% static "bfks.png"  %}" width="190"
-                                          height="130" alt="БФКС" align="middle"></a></row>
+                                               height="130" alt="БФКС" align="middle"></a></row>
             <row><h3 align="center">МФКС</h3></row>
             <row><a href="http://www.fei.org"><img class="pic" src="{% static "brand.gif"  %}" width="190"
-                                          height="130" alt="БФКС" align="middle"></a></row>
+                                                   height="130" alt="БФКС" align="middle"></a></row>
             <row><h3 align="center">РФКС</h3></row>
             <row><a href="http://fksr.ru"><img class="pic" src="{% static "rf.jpg"  %}" width="190"
-                                          height="130" alt="БФКС" align="middle"></a></row>
+                                               height="130" alt="БФКС" align="middle"></a></row>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 mark" id="footer">
+        <div class="col-md-12 col-xs-12 mark" id="footer">
+                        <div class="col-md-4 col-xs-4 footer_col" id="social">
+                <h4 align="center" class="col">СОЦ. СЕТИ</h4>
+                <a href="http://twitter.com/" class="social-icon twitter"></a>
+                <a href="http://facebook.com/" class="social-icon facebook"></a>
+                <a href="http://plus.google.com/" class="social-icon google-plus"></a>
+                <a href="http://vimeo.com/" class="social-icon-small vimeo"></a>
+                <a href="http://youtube.com/" class="social-icon-small youtube"></a>
+                <a href="http://flickr.com/" class="social-icon-small flickr"></a>
+                <a href="http://instagram.com/" class="social-icon-small instagram"></a>
+            </div>
+            <div class="col-md-4 col-xs-4 footer_col">
+                <h1>  <span class="col" id="time">00:00:00</span></h1>
+            </div>
+
+            <script type="text/javascript">
+                setInterval(function () {
+                    date = new Date(),
+                        h = date.getHours(),
+                        m = date.getMinutes(),
+                        s = date.getSeconds(),
+                        h = (h < 10) ? '0' + h : h,
+                        m = (m < 10) ? '0' + m : m,
+                        s = (s < 10) ? '0' + s : s,
+                        document.getElementById('time').innerHTML = h + ':' + m + ':' + s;
+                }, 1000);
+            </script>
 
         </div>
     </div>

@@ -1,5 +1,24 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, TextInput
 from .models import *
+from django.contrib.auth.models import User
+from django import forms
+
+
+class UserAddForm(ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ["username","first_name","last_name","email","phone","birthday","groups", 'password']
+        widgets = {"birthday": TextInput(attrs={"readonly":'', 'onfocus': "this.removeAttribute('readonly')",'type':'date'}),
+                   "phone":TextInput(attrs={"readonly":'', 'onfocus': "this.removeAttribute('readonly')"}),
+                   "password": TextInput(attrs={'autocomplete': 'off', "readonly":'', 'onfocus': "this.removeAttribute('readonly')",'type':'password'})
+                   }
+
+
+class UserAuthenticateForm(ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ["username", 'password']
+        widgets = {"password": forms.PasswordInput()}
 
 
 class StepForm(ModelForm):

@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.response import TemplateResponse
-
+from django.contrib.auth import authenticate
 from django.http import HttpResponse
 import django.core.exceptions
 
 from . forms import CompetitionAddForm, PairAddForm, HorseAddForm, TeamAddForm, PairOnStartAddForm,\
-    DescriptionStepAddForm
+    DescriptionStepAddForm, UserAddForm, UserAuthenticateForm
 from . models import Competition, Team, CustomUser, Horse, Pair, PairOnStart
 
 
@@ -132,6 +132,48 @@ def create_pair_on_start(request):
     })
 
 
+def create_user(request):
+    if request.method == 'POST':
+        f = UserAddForm(request.POST)
+        if f.is_valid():
+            f.save()
+            return redirect(index)
+    elif request.method == 'GET':
+        f = UserAddForm()
+    else:
+        assert False
+    return TemplateResponse(request, "create_user.html", {
+        "form": f
+    })
+
+
+def user_authenticate(request):
+    if request.method == 'POST':
+        f = UserAuthenticateForm(request.POST)
+        print(f)
+        if f.is_valid():
+            print("ok")
+            user = authenticate(f)
+            print(user)
+            if user is not None:
+                # the password verified for the user
+                if user.is_active:
+                    print("User is valid, active and authenticated")
+                else:
+                    print("The password is valid, but the account has been disabled!")
+            else:
+                # the authentication system was unable to verify the username and password
+                print("The username and password were incorrect.")
+            return redirect(index)
+    elif request.method == 'GET':
+        f = UserAuthenticateForm()
+    else:
+        assert False
+    return TemplateResponse(request, "user_authenticate.html", {
+        "form": f
+    })
+
+
 def delete_horse(request, horse_pk):
     horse = get_object_or_404(Horse, pk=horse_pk)
     horse.delete()
@@ -148,10 +190,13 @@ def update_horse(request, horse_pk):
 
 def update_horse_view(request, horse_pk):
     instance = get_object_or_404(Horse, pk=horse_pk)
-    print(instance)
     f = HorseAddForm(request.POST or None, instance=instance)
     if f.is_valid():
         f.save()
         return redirect(list_horses_view)
     else:
         assert False
+
+
+def statistic_way(request):
+    return TemplateResponse(request, "statistic_way.html", {})

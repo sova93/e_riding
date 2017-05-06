@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'create_competition', views.create_competition, name="create_competition"),
     url(r'create_horse', views.create_horse, name="create_horse"),
+    url(r'create_user', views.create_user, name="create_user"),
     url(r'create_team', views.create_team, name="create_team"),
     url(r'create_pair_on_start', views.create_pair_on_start, name="create_pair_on_start"),
     url(r'create_pair', views.create_pair, name="create_pair"),
@@ -18,4 +19,7 @@ urlpatterns = [
     url(r'list_teams_view_on_competition/(?P<competition_pk>[\d]+)', views.list_teams_view_on_competition, name="list_teams_view_on_competition"),
     url(r'update_horse_view/(?P<horse_pk>[\d]+)', views.update_horse_view, name="update_horse_view"),
     url(r'team/(?P<team_pk>[\d]+)', views.list_team_view, name="list_team_view"),
+    url(r'statistic_way/', views.statistic_way, name="statistic_way"),
+    url(r'user_authenticate', views.user_authenticate, name="user_authenticate"),
 ]
+
