@@ -11,6 +11,11 @@ from . forms import CompetitionAddForm, PairAddForm, HorseAddForm, TeamAddForm, 
 from . models import Competition, Team, CustomUser, Horse, Pair, PairOnStart
 
 
+class _BaseViewMixin(object):
+    context_object_name = "form"
+    success_url = reverse_lazy("competitions")
+
+
 class MainPageView(generic.TemplateView):
     template_name = "index.html"
 
@@ -53,121 +58,46 @@ class TeamInCompetitionView(generic.TemplateView):
         return ctx
 
 
-class CompetitionNewView(generic.CreateView):
+class CompetitionNewView(_BaseViewMixin, generic.CreateView):
     form_class = CompetitionAddForm
     template_name = "competition-new.html"
+
+
+class DescriptionStepNewViewMixin(_BaseViewMixin, generic.CreateView):
+    form_class = DescriptionStepAddForm
+    template_name = "description_step_new.html"
+
+
+class HorseNewView(_BaseViewMixin, generic.CreateView):
+    form_class = HorseAddForm
+    template_name = "horse_new.html"
+
+
+class TeamNewView(_BaseViewMixin, generic.CreateView):
+    form_class = TeamAddForm
+    template_name = "team_new.html"
+
+
+class PairNewView(_BaseViewMixin, generic.CreateView):
+    form_class = PairAddForm
+    template_name = "pair_new.html"
+
+
+class PairOnStartNewView(generic.CreateView):
+    form_class = PairOnStartAddForm
+    template_name = "pair_on_start_new.html"
     context_object_name = "form"
     success_url = reverse_lazy("competitions")
 
 
-def competition_new1(request):
-    if request.method == 'POST':
-        f = CompetitionAddForm(request.POST)
-        if f.is_valid():
-            f.save()
-            return redirect(competitions)
-    elif request.method == 'GET':
-        f = CompetitionAddForm()
-    else:
-        assert False
-    return TemplateResponse(request, "competition-new.html", {
-        "form": f
-    })
-
-
-def description_step_new(request):
-    if request.method == 'POST':
-        f = DescriptionStepAddForm(request.POST)
-        if f.is_valid():
-            f.save()
-            return redirect(description_step_new)
-    elif request.method == 'GET':
-        f = DescriptionStepAddForm
-    else:
-        assert False
-    return TemplateResponse(request, "description_step_new.html", {
-        "form": f
-    })
-
-
-def horse_new(request):
-    if request.method == 'POST':
-        f = HorseAddForm(request.POST)
-        if f.is_valid():
-            f.save()
-            return redirect(horses)
-    elif request.method == 'GET':
-        f = HorseAddForm()
-    else:
-        assert False
-    return TemplateResponse(request, "horse_new.html", {
-        "form": f
-    })
-
-
-def team_new(request):
-    if request.method == 'POST':
-        f = TeamAddForm(request.POST)
-        if f.is_valid():
-            f.save()
-            return redirect(team_new)
-    elif request.method == 'GET':
-        f = TeamAddForm()
-    else:
-        assert False
-    return TemplateResponse(request, "team_new.html", {
-        "form": f
-    })
-
-
-def pair_new(request):
-    print('DONT OK')
-    if request.method == 'POST':
-        f = PairAddForm(request.POST)
-        if f.is_valid():
-            f.save()
-            return redirect(pair_new)
-    elif request.method == 'GET':
-        f = PairAddForm()
-    else:
-        assert False
-    return TemplateResponse(request, "pair_new.html", {
-        "form": f
-    })
-
-
-def pair_on_start_new(request):
-    print('OK')
-    if request.method == 'POST':
-        f = PairOnStartAddForm(request.POST)
-        if f.is_valid():
-            f.save()
-            return redirect(pair_on_start_new)
-    elif request.method == 'GET':
-        f = PairOnStartAddForm()
-    else:
-        assert False
-    return TemplateResponse(request, "pair_on_start_new.html", {
-        "form": f
-    })
-
-
-def user_new(request):
-    if request.method == 'POST':
-        f = UserAddForm(request.POST)
-        if f.is_valid():
-            f.save()
-            return redirect(index)
-    elif request.method == 'GET':
-        f = UserAddForm()
-    else:
-        assert False
-    return TemplateResponse(request, "user_new.html", {
-        "form": f
-    })
+class UserNewView(_BaseViewMixin, generic.CreateView):
+    form_class = UserAddForm
+    template_name = "user_new.html"
 
 
 def auth(request):
+    import warnings
+    warnings.warn("function based view are deprecated!!!")
     if request.method == 'POST':
         f = UserAuthenticateForm(request.POST)
         print(f)
@@ -194,29 +124,32 @@ def auth(request):
     })
 
 
-def horse_delete(request, horse_pk):
-    horse = get_object_or_404(Horse, pk=horse_pk)
-    horse.delete()
-    return redirect("list_horses_view")
+class HorseDeleteView(generic.DeleteView):
+    form_class = UserAddForm
+    success_url = reverse_lazy("horses")
 
 
-def horse_update(request, horse_pk):
-    horse = get_object_or_404(Horse, pk=horse_pk)
-    f = HorseAddForm(instance=horse)
-    return TemplateResponse(request, "horse_update.html", {
-        "form": f, "horse_pk": horse_pk
-    })
+class HorseUpdateView(_BaseViewMixin, generic.UpdateView):
+    form_class = HorseAddForm
+    template_name = "horse_update.html"
 
 
-def update_horse_view(request, horse_pk):
-    instance = get_object_or_404(Horse, pk=horse_pk)
-    f = HorseAddForm(request.POST or None, instance=instance)
-    if f.is_valid():
-        f.save()
-        return redirect(horses)
-    else:
-        assert False
+# def horse_update(request, horse_pk):
+#     horse = get_object_or_404(Horse, pk=horse_pk)
+#     f = HorseAddForm(instance=horse)
+#     return TemplateResponse(request, "horse_update.html", {
+#         "form": f, "horse_pk": horse_pk
+#     })
 
 
-def statistic_way(request):
-    return TemplateResponse(request, "statistic_way.html", {})
+# def update_horse_view(request, horse_pk):
+#     instance = get_object_or_404(Horse, pk=horse_pk)
+#     f = HorseAddForm(request.POST or None, instance=instance)
+#     if f.is_valid():
+#         f.save()
+#         return redirect(horses)
+#     else:
+#         assert False
+
+class StatisicsWayView(generic.TemplateView):
+    template_name = "statistic_way.html"
