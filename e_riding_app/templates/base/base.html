@@ -14,7 +14,7 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static "css/styles.css"  %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/styles.css" %}"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +33,7 @@
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <a class="navbar-brand" href="{% url 'index' %}">
-                                <img class="pic_margin" alt="Brand" src="{% static "pic_nav.png"  %}" height=55  >
+                                <img class="pic_margin" alt="Brand" src="{% static "pic_nav.png" %}" height=55  >
                             </a>
                         </div>
                         <form class="navbar-form navbar-left" role="search">
@@ -73,16 +73,9 @@
                                 </ul>
                             </div>
                         </form>
-                        <form class="navbar-form navbar-left">
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle glyphicon glyphicon-user" type="button" data-toggle="dropdown">
-                                    <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url 'auth' %}">Вход</a></li>
-                                    <li><a href="{% url 'user-new' %}">Регистрация</a></li>
-                                </ul>
-                            </div>
-                        </form>
+
+                        {% include 'base/base_dropdown.html' %}
+                        {#                        </form>#}
                     </div>
                 </nav>
             {% endblock header %}
@@ -109,19 +102,19 @@
         </div>
         <div class="col-xs-2 col-md-2 mark">
             <row><h3 align="center">БФКС</h3></row>
-            <row><a href="http://bfks.by"><img class="pic" src="{% static "bfks.png"  %}" width="190"
+            <row><a href="http://bfks.by"><img class="pic" src="{% static "bfks.png" %}" width="190"
                                                height="130" alt="БФКС" align="middle"></a></row>
             <row><h3 align="center">МФКС</h3></row>
-            <row><a href="http://www.fei.org"><img class="pic" src="{% static "brand.gif"  %}" width="190"
+            <row><a href="http://www.fei.org"><img class="pic" src="{% static "brand.gif" %}" width="190"
                                                    height="130" alt="БФКС" align="middle"></a></row>
             <row><h3 align="center">РФКС</h3></row>
-            <row><a href="http://fksr.ru"><img class="pic" src="{% static "rf.jpg"  %}" width="190"
+            <row><a href="http://fksr.ru"><img class="pic" src="{% static "rf.jpg" %}" width="190"
                                                height="130" alt="БФКС" align="middle"></a></row>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12 col-xs-12 mark" id="footer">
-                        <div class="col-md-4 col-xs-4 footer_col" id="social">
+            <div class="col-md-4 col-xs-4 footer_col" id="social">
                 <h4 align="center" class="col">СОЦ. СЕТИ</h4>
                 <a href="http://twitter.com/" class="social-icon twitter"></a>
                 <a href="http://facebook.com/" class="social-icon facebook"></a>

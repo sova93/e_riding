@@ -14,13 +14,6 @@ class UserAddForm(ModelForm):
                    }
 
 
-class UserAuthenticateForm(ModelForm):
-    class Meta:
-        model = CustomUser
-        fields = ["username", 'password']
-        widgets = {"password": forms.PasswordInput()}
-
-
 class StepForm(ModelForm):
     class Meta:
         model = Step

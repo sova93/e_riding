@@ -1,0 +1,18 @@
+<form class="navbar-form navbar-left">
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle glyphicon glyphicon-user" {% if user.is_authenticated %}style="color:#00aa1a"{% endif %} type="button" data-toggle="dropdown">
+        <span class="caret">
+        </span>
+        </button>
+        <ul class="dropdown-menu">
+            <li>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Выход</a>
+                {% else %}
+                <a href="{% url 'login' %}">Вход</a>
+                {% endif %}
+            </li>
+            <li><a href="{% url 'signup' %}">Регистрация</a></li>
+        </ul>
+    </div>
+</form>
