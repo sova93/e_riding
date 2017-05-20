@@ -4,7 +4,7 @@
 
 {% block content %}
     <h3 align="center">Добавление нового пользователя </h3>
-    <form action="{% url 'create_user' %}" method="post" >
+    <form action="{% url 'user-new' %}" method="post" >
         {% csrf_token %}
         <div class = "row">
             <label><h4>Логин {{ form.username }}</h4></label>

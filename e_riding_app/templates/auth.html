@@ -4,7 +4,7 @@
 
 {% block content %}
     <h3 align="center">Вход в систему </h3>
-    <form action="{% url 'user_authenticate' %}" method="post">
+    <form action="{% url 'auth' %}" method="post">
         {% csrf_token %}
         <div class = "row">
             <label><h4>Логин {{ form.username }}</h4></label>

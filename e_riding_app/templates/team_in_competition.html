@@ -7,7 +7,7 @@
     {% for team in teams %}
         <div class="row">
             <div class="col-xs-12 col-md-12 markRow">
-                <li><a href="{% url 'list_team_view' team.id %}">{{ team.name }}</a></li>
+                <li><a href="{% url 'team-pk' team.id %}">{{ team.name }}</a></li>
             </div>
         </div>
     {% endfor %}

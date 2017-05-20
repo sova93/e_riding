@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls.base import reverse_lazy
 from django.template.response import TemplateResponse
 from django.contrib.auth import authenticate
 from django.http import HttpResponse
+from django.views import generic
 import django.core.exceptions
 
 from . forms import CompetitionAddForm, PairAddForm, HorseAddForm, TeamAddForm, PairOnStartAddForm,\
@@ -9,130 +11,148 @@ from . forms import CompetitionAddForm, PairAddForm, HorseAddForm, TeamAddForm, 
 from . models import Competition, Team, CustomUser, Horse, Pair, PairOnStart
 
 
-def index(request):
-    return TemplateResponse(request, "index.html", {})
+class MainPageView(generic.TemplateView):
+    template_name = "index.html"
 
 
-def list_competition_view(request):
-    competition = Competition.objects.all()
-    return TemplateResponse(request, "list_competition_view.html", {'list_competition': competition})
+class CompetitionsView(generic.ListView):
+    model = Competition
+    context_object_name = "competitions"
+    template_name = "competitions.html"
 
 
-def list_horses_view(request):
-    horses = Horse.objects.all()
-    return TemplateResponse(request, "list_horses_view.html", {'list_horses': horses})
+class HorsesView(generic.ListView):
+    model = Horse
+    context_object_name = "horses"
+    template_name = "horses.html"
 
 
-def list_pairs_all(request):
-    pairs = Pair.objects.all()
-    return TemplateResponse(request, "list_pairs_all.html", {'pairs': pairs})
+class PairsView(generic.ListView):
+    model = Pair
+    context_object_name = "pairs"
+    template_name = "pairs.html"
 
 
-def list_team_view(request, team_pk):
-    team = get_object_or_404(Team, pk=team_pk)
-    pairs = get_object_or_404(Team, pk=team_pk).pairs.all()
-    return TemplateResponse(request, "list_team_view.html", {'pairs': pairs, 'team': team})
+class TeamView(generic.TemplateView):
+    template_name = "teams.html"
+
+    def get_context_data(self, team_pk, **kwargs):
+        ctx = super().get_context_data(team_pk=team_pk, **kwargs)
+        ctx["team"] = get_object_or_404(Team, pk=team_pk)
+        ctx["pairs"] = ctx["team"].pairs.all()
+        return ctx
 
 
-def list_teams_view_on_competition(request, competition_pk):
-    competition = get_object_or_404(Competition, pk=competition_pk)
-    teams = get_object_or_404(Competition, pk=competition_pk).teams.all()
-    return TemplateResponse(request, "list_teams_view_on_competition.html", {'teams': teams, 'competition': competition})
+class TeamInCompetitionView(generic.TemplateView):
+    template_name = "team_in_competition.html"
+
+    def get_context_data(self, competition_pk, **kwargs):
+        ctx = super().get_context_data(competition_pk=competition_pk, **kwargs)
+        ctx["competition"] = get_object_or_404(Competition, pk=competition_pk)
+        ctx["teams"] = ctx["competition"].teams.all()
+        return ctx
 
 
-def create_competition(request):
+class CompetitionNewView(generic.CreateView):
+    form_class = CompetitionAddForm
+    template_name = "competition-new.html"
+    context_object_name = "form"
+    success_url = reverse_lazy("competitions")
+
+
+def competition_new1(request):
     if request.method == 'POST':
         f = CompetitionAddForm(request.POST)
         if f.is_valid():
             f.save()
-            return redirect(list_competition_view)
+            return redirect(competitions)
     elif request.method == 'GET':
         f = CompetitionAddForm()
     else:
         assert False
-    return TemplateResponse(request, "create_competition.html", {
+    return TemplateResponse(request, "competition-new.html", {
         "form": f
     })
 
 
-def create_description_step(request):
+def description_step_new(request):
     if request.method == 'POST':
         f = DescriptionStepAddForm(request.POST)
         if f.is_valid():
             f.save()
-            return redirect(create_description_step)
+            return redirect(description_step_new)
     elif request.method == 'GET':
         f = DescriptionStepAddForm
     else:
         assert False
-    return TemplateResponse(request, "create_description_step.html", {
+    return TemplateResponse(request, "description_step_new.html", {
         "form": f
     })
 
 
-def create_horse(request):
+def horse_new(request):
     if request.method == 'POST':
         f = HorseAddForm(request.POST)
         if f.is_valid():
             f.save()
-            return redirect(list_horses_view)
+            return redirect(horses)
     elif request.method == 'GET':
         f = HorseAddForm()
     else:
         assert False
-    return TemplateResponse(request, "create_horse.html", {
+    return TemplateResponse(request, "horse_new.html", {
         "form": f
     })
 
 
-def create_team(request):
+def team_new(request):
     if request.method == 'POST':
         f = TeamAddForm(request.POST)
         if f.is_valid():
             f.save()
-            return redirect(create_team)
+            return redirect(team_new)
     elif request.method == 'GET':
         f = TeamAddForm()
     else:
         assert False
-    return TemplateResponse(request, "create_team.html", {
+    return TemplateResponse(request, "team_new.html", {
         "form": f
     })
 
 
-def create_pair(request):
+def pair_new(request):
     print('DONT OK')
     if request.method == 'POST':
         f = PairAddForm(request.POST)
         if f.is_valid():
             f.save()
-            return redirect(create_pair)
+            return redirect(pair_new)
     elif request.method == 'GET':
         f = PairAddForm()
     else:
         assert False
-    return TemplateResponse(request, "create_pair.html", {
+    return TemplateResponse(request, "pair_new.html", {
         "form": f
     })
 
 
-def create_pair_on_start(request):
+def pair_on_start_new(request):
     print('OK')
     if request.method == 'POST':
         f = PairOnStartAddForm(request.POST)
         if f.is_valid():
             f.save()
-            return redirect(create_pair_on_start)
+            return redirect(pair_on_start_new)
     elif request.method == 'GET':
         f = PairOnStartAddForm()
     else:
         assert False
-    return TemplateResponse(request, "create_pair_on_start.html", {
+    return TemplateResponse(request, "pair_on_start_new.html", {
         "form": f
     })
 
 
-def create_user(request):
+def user_new(request):
     if request.method == 'POST':
         f = UserAddForm(request.POST)
         if f.is_valid():
@@ -142,12 +162,12 @@ def create_user(request):
         f = UserAddForm()
     else:
         assert False
-    return TemplateResponse(request, "create_user.html", {
+    return TemplateResponse(request, "user_new.html", {
         "form": f
     })
 
 
-def user_authenticate(request):
+def auth(request):
     if request.method == 'POST':
         f = UserAuthenticateForm(request.POST)
         print(f)
@@ -169,21 +189,21 @@ def user_authenticate(request):
         f = UserAuthenticateForm()
     else:
         assert False
-    return TemplateResponse(request, "user_authenticate.html", {
+    return TemplateResponse(request, "auth.html", {
         "form": f
     })
 
 
-def delete_horse(request, horse_pk):
+def horse_delete(request, horse_pk):
     horse = get_object_or_404(Horse, pk=horse_pk)
     horse.delete()
     return redirect("list_horses_view")
 
 
-def update_horse(request, horse_pk):
+def horse_update(request, horse_pk):
     horse = get_object_or_404(Horse, pk=horse_pk)
     f = HorseAddForm(instance=horse)
-    return TemplateResponse(request, "update_horse.html", {
+    return TemplateResponse(request, "horse_update.html", {
         "form": f, "horse_pk": horse_pk
     })
 
@@ -193,7 +213,7 @@ def update_horse_view(request, horse_pk):
     f = HorseAddForm(request.POST or None, instance=instance)
     if f.is_valid():
         f.save()
-        return redirect(list_horses_view)
+        return redirect(horses)
     else:
         assert False
 

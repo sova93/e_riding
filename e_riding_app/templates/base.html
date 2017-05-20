@@ -51,7 +51,7 @@
                                     <li class="dropdown-submenu">
                                         <a href="#">Календарь соревнований</a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{% url 'list_competition_view' %}">Все</a></li>
+                                            <li><a href="{% url 'competitions' %}">Все</a></li>
                                             <li><a href="#">Предстоящие</a></li>
                                             <li><a href="#">Активные</a></li>
                                             <li><a href="#">Прошедшие</a></li>
@@ -78,8 +78,8 @@
                                 <button class="btn btn-primary dropdown-toggle glyphicon glyphicon-user" type="button" data-toggle="dropdown">
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{% url 'user_authenticate' %}">Вход</a></li>
-                                    <li><a href="{% url 'create_user' %}">Регистрация</a></li>
+                                    <li><a href="{% url 'auth' %}">Вход</a></li>
+                                    <li><a href="{% url 'user-new' %}">Регистрация</a></li>
                                 </ul>
                             </div>
                         </form>
@@ -89,21 +89,21 @@
         </div>
     </div>
     <div class="row content_height">
-        <div class="col-xs-3 col-md-3 mark">
+        <div class="col-xs-2 col-md-2 mark">
             {% block links %}
-                <p> <a href="{% url 'create_competition' %}">Создание соревнований</a></p>
-                <p>  <a href="{% url 'list_competition_view' %}">Список соревнований</a> </p>
-                <p>  <a href="{% url 'create_horse' %}">Добавление новой лошади</a> </p>
-                <p>  <a href="{% url 'list_horses_view' %}">Список лошадей</a> </p>
-                <p>  <a href="{% url 'list_pairs_all' %}">Список всех пар</a> </p>
-                <p>  <a href="{% url 'create_pair' %}">Создание пары</a> </p>
-                <p>  <a href="{% url 'create_team' %}">Добавление новой команды</a> </p>
-                <p>  <a href="{% url 'create_pair_on_start' %}">Добавление пары на старт</a> </p>
-                <p>  <a href="{% url 'create_description_step' %}">Добавление описания этапа</a> </p>
+                <p> <a href="{% url 'competition-new' %}">Создание соревнований</a></p>
+                <p>  <a href="{% url 'competitions' %}">Список соревнований</a> </p>
+                <p>  <a href="{% url 'horse-new' %}">Добавление новой лошади</a> </p>
+                <p>  <a href="{% url 'horses' %}">Список лошадей</a> </p>
+                <p>  <a href="{% url 'pairs' %}">Список всех пар</a> </p>
+                <p>  <a href="{% url 'pair-new' %}">Создание пары</a> </p>
+                <p>  <a href="{% url 'team-new' %}">Добавление новой команды</a> </p>
+                <p>  <a href="{% url 'pair-on-start-new' %}">Добавление пары на старт</a> </p>
+                <p>  <a href="{% url 'description-step-new' %}">Добавление описания этапа</a> </p>
                 <p>  <a href="{% url 'statistic_way' %}">Статистика по треку</a> </p>
             {% endblock links %}
         </div>
-        <div class="col-xs-7 col-md-7 mark">
+        <div class="col-xs-8 col-md-8 mark">
             {% block content %}
             {% endblock content %}
         </div>

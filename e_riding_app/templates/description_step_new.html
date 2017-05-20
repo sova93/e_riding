@@ -4,7 +4,7 @@
 
 {% block content %}
     <h3>Описание этапа</h3>
-    <form action="{% url 'create_description_step' %}" method="post">
+    <form action="{% url 'description-step-new' %}" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Добавить" >

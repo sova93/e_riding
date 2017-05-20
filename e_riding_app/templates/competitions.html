@@ -10,10 +10,10 @@
     <div class="col-xs-4 col-md-4 markRow">
         <h4 align="center">Дата</h4>
     </div>
-    {% for competition in list_competition %}
+    {% for competition in competitions %}
         <div class="row">
             <div class="col-xs-8 col-md-8 markRow">
-                <li><a href="{% url 'list_teams_view_on_competition' competition.id %}"> {{ competition.place }}</a></li>
+                <li><a href="{% url 'teams-in-competition-pk' competition.id %}"> {{ competition.place }}</a></li>
             </div>
             <div class="col-xs-4 col-md-4 markRow">
                 <h5 align="center">{{ competition.begin }} - {{ competition.close }}</h5>
