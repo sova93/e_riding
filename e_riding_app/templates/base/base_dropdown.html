@@ -1,8 +1,8 @@
 <form class="navbar-form navbar-left">
     <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle glyphicon glyphicon-user" {% if user.is_authenticated %}style="color:#00aa1a"{% endif %} type="button" data-toggle="dropdown">
-        <span class="caret">
-        </span>
+            {{ user.username }}
+            <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
             <li>
