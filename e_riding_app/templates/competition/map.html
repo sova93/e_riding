@@ -1,5 +1,6 @@
 {% extends "base/base.html" %}
 {% load leaflet_tags %}
+{% load static %}
 
 {% block custom_head %}
     {% leaflet_js %}
@@ -16,7 +17,7 @@
             var detail = e.detail;
             window.MAP_detail = detail;
             L.marker([50.5, 30.5]).addTo(detail.map);
-            detail.map.setView(new L.LatLng(53.889772644862695, 27.590103149414066), 10);
+            detail.map.setView(new L.LatLng(53.81261226773618, 27.064990997314457), 12);
 
             fetch('{% url 'competition-api-points' competition_pk %}')
                 .then(function(resp) {
@@ -28,10 +29,18 @@
                             title: item.user
                         });
                         marker.addTo(detail.map);
-                        marker.bindPopup("<h2>"+item.user+"</h2>Hello world");
+                        marker.bindPopup("<h2>"+item.user+"</h2>");
                     });
 
+                });
+            fetch("{% static "track.geojson" %}")
+                .then(function (resp) {
+                    return resp.json();
                 })
+                .then(function (json){
+                    console.log(json);
+                    L.geoJSON(json).addTo(detail.map);
+                });
 
         });</script>
 {% endblock %}
