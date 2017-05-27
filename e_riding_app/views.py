@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from django.views import generic
 import django.core.exceptions
 
+import json
+
 from . forms import CompetitionAddForm, PairAddForm, HorseAddForm, TeamAddForm, PairOnStartAddForm,\
     DescriptionStepAddForm, UserAddForm
 from . models import Competition, Team, CustomUser, Horse, Pair, PairOnStart
@@ -113,6 +115,37 @@ class HorseDeleteView(generic.DeleteView):
 class HorseUpdateView(_BaseViewMixin, generic.UpdateView):
     form_class = HorseAddForm
     template_name = "horse_update.html"
+
+
+class CompetitionMapView(_BaseViewMixin, generic.TemplateView):
+    template_name = "competition/map.html"
+
+    def get_context_data(self, competition_pk, **kwargs):
+        ctx = super().get_context_data(competition_pk=competition_pk, **kwargs)
+        ctx["competition"] = Competition.objects.get(pk=competition_pk)
+
+        return ctx
+
+
+def get_competition_points(request, competition_pk):
+    objs = [{
+        "user": "admin",
+        "lat": 53.896944,
+        "lon": 27.286226,
+    },{
+        "user": "vet",
+        "lat": 53.895829,
+        "lon":  27.295496,
+    },{
+        "user": "vet2",
+        "lat": 53.888427,
+        "lon":  27.296698,
+    },{
+        "user": "vet3",
+        "lat": 53.890759,
+        "lon":  27.281076,
+    }]
+    return HttpResponse(json.dumps(objs), content_type="application/json")
 
 
 class StatisicsWayView(generic.TemplateView):

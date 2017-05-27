@@ -12,11 +12,17 @@
     </div>
     {% for competition in competitions %}
         <div class="row">
-            <div class="col-xs-8 col-md-8 markRow">
+            <div class="col-xs-7 col-md-7 markRow">
                 <li><a href="{% url 'teams-in-competition-pk' competition.id %}"> {{ competition.place }}</a></li>
+
             </div>
             <div class="col-xs-4 col-md-4 markRow">
                 <h5 align="center">{{ competition.begin }} - {{ competition.close }}</h5>
+            </div>
+            <div class="col-xs-1 col-md-1 markRow">
+                <a href="{% url 'competition-map' competition.pk %}">
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                </a>
             </div>
         </div>
     {% endfor %}
