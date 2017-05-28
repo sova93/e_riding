@@ -25,7 +25,7 @@ SECRET_KEY = '6=2#a8n#@to+_1r%($y%*v7w-)ciigpt&4cy%d2m23y9h-m+_f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.100.205", "127.0.0.1"]
+ALLOWED_HOSTS = ["192.168.100.205", "192.168.100.206", "127.0.0.1"]
 
 AUTH_USER_MODEL = 'e_riding_app.CustomUser'
 
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'autofixture',
     'debug_toolbar',
     'django_extensions',
+    'leaflet',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +131,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 INTERNAL_IPS = ('127.0.0.1', )
+
+LEAFLET_CONFIG = {
+
+}
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
