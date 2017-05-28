@@ -94,6 +94,11 @@ class HorseNewView(_BaseViewMixin, generic.CreateView):
     form_class = HorseAddForm
     template_name = "horse/horse_form.html"
 
+class HorseView(_BaseViewMixin, generic.DetailView):
+    model = Horse
+    pk_url_kwarg = "horse_pk"
+    template_name = "horse/horse.html"
+
 
 class TeamNewView(_BaseViewMixin, generic.CreateView):
     form_class = TeamAddForm

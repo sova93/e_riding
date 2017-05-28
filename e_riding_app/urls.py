@@ -16,8 +16,9 @@ urlpatterns = [
     url(r'competition/(?P<competition_pk>[\d]+)', views.CompetitionView.as_view(), name="competition-pk"),
     # horse
     url(r'horse/new', views.HorseNewView.as_view(), name="horse-new"),
-    url(r'horse/(?P<horse_pk>[\d]+)/update', views.HorseUpdateView.as_view(), name="horse-update"),
+    url(r'horse/(?P<horse_pk>[\d]+)/edit', views.HorseUpdateView.as_view(), name="horse-edit"),
     url(r'horse/(?P<horse_pk>[\d]+)/delete', views.HorseDeleteView.as_view(), name="horse-delete"),
+    url(r'horse/(?P<horse_pk>[\d]+)', views.HorseView.as_view(), name="horse-pk"),
     url(r'horses', views.HorsesView.as_view(), name="horses"),
     # team
     url(r'team/new', views.TeamNewView.as_view(), name="team-new"),
