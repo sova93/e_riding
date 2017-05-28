@@ -43,7 +43,7 @@ class CompetitionView(generic.DetailView):
 class CompetitionEditView(generic.UpdateView):
     model = Competition
     pk_url_kwarg = "competition_pk"
-    template_name = "competition/competition-form.html"
+    template_name = "competition/competition_form.html"
     form_class = CompetitionAddForm
     success_url = reverse_lazy("competitions")
 
@@ -82,7 +82,7 @@ class TeamInCompetitionView(generic.TemplateView):
 
 class CompetitionNewView(_BaseViewMixin, generic.CreateView):
     form_class = CompetitionAddForm
-    template_name = "competition/competition-form.html"
+    template_name = "competition/competition_form.html"
 
 
 class DescriptionStepNewViewMixin(_BaseViewMixin, generic.CreateView):
@@ -92,7 +92,7 @@ class DescriptionStepNewViewMixin(_BaseViewMixin, generic.CreateView):
 
 class HorseNewView(_BaseViewMixin, generic.CreateView):
     form_class = HorseAddForm
-    template_name = "horse/horse_new.html"
+    template_name = "horse/horse_form.html"
 
 
 class TeamNewView(_BaseViewMixin, generic.CreateView):
@@ -134,7 +134,9 @@ class HorseDeleteView(generic.DeleteView):
 
 class HorseUpdateView(_BaseViewMixin, generic.UpdateView):
     form_class = HorseAddForm
-    template_name = "horse/horse_update.html"
+    model = Horse
+    pk_url_kwarg = "horse_pk"
+    template_name = "horse/horse_form.html"
 
 
 class CompetitionMapView(_BaseViewMixin, generic.TemplateView):
