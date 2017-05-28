@@ -80,6 +80,7 @@ class Competition(models.Model):
     begin = models.DateTimeField()
     close = models.DateTimeField()
     place = models.CharField(max_length=100)
+    steps = models.ManyToManyField(DescriptionStep, related_name="competition_description_step")
     manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='competition_manager')
     teams = models.ManyToManyField(Team, related_name='competition_teams')
     judges = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='competition_judges')

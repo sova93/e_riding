@@ -38,3 +38,4 @@ python("manage.py", *"loadtestdata e_riding_app.CustomUser:10 "
                      "e_riding_app.Competition:15".split(" "))
 
 python("manage.py", "loaddata", "e_riding_app/dumped_data/news.json")
+python("manage.py", "loaddata", "e_riding_app/dumped_data/group.json")

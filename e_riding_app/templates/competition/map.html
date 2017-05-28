@@ -16,7 +16,6 @@
 
             var detail = e.detail;
             window.MAP_detail = detail;
-            L.marker([50.5, 30.5]).addTo(detail.map);
             detail.map.setView(new L.LatLng(53.81261226773618, 27.064990997314457), 12);
 
             fetch('{% url 'competition-api-points' competition_pk %}')
