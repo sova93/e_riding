@@ -83,6 +83,9 @@ class Competition(models.Model):
     manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='competition_manager')
     teams = models.ManyToManyField(Team, related_name='competition_teams')
     judges = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='competition_judges')
+    timekeepers = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='competition_timekeepers')
+    vets = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='competition_vets')
+    stats = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='competition_stats')
 
 
 class News(models.Model):

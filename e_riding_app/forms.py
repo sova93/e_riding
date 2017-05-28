@@ -13,7 +13,16 @@ from crispy_forms.layout import Submit
 class UserAddForm(ModelForm):
     class Meta:
         model = CustomUser
-        fields = ["username","first_name","last_name","email","phone","birthday","groups", 'password']
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "phone",
+            "birthday",
+            "groups",
+            'password'
+        ]
         widgets = {
             "birthday": TextInput(attrs={'type': 'date'}),
             "password": TextInput(attrs={'type': 'password'})
@@ -75,6 +84,31 @@ class CompetitionAddForm(ModelForm):
     class Meta:
         model = Competition
         exclude = []
+        widgets = {
+            "begin": TextInput(attrs={'type': 'datetime-local'}),
+            "close": TextInput(attrs={'type': 'datetime-local'})
+        }
+        labels = {
+            "begin":        "Дата начала",
+            "close":        "Дата закрытия",
+            "place":        "Место проведения",
+            "manager":      "Организатор",
+            "teams":        "Команды",
+            "judges":       "Судьи",
+            "timekeepers":  "Хронометристы",
+            "vets":         "Ветеренары",
+            "stats":        "Статисты",
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(CompetitionAddForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-8'
+
+        self.helper.add_input(Submit('submit', 'Создать'))
 
 
 class DescriptionStepAddForm(ModelForm):
