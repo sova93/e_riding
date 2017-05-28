@@ -49,7 +49,6 @@ class UserAddForm(ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-8'
-        self.helper.attrs
 
         self.helper.add_input(Submit('submit', 'Зарегестрироваться'))
 

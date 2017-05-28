@@ -34,6 +34,12 @@ class CompetitionsView(generic.ListView):
     template_name = "competition/competitions.html"
 
 
+class CompetitionView(generic.DetailView):
+    model = Competition
+    pk_url_kwarg = "competition_pk"
+    template_name = "competition/competition.html"
+
+
 class HorsesView(generic.ListView):
     model = Horse
     context_object_name = "horses"

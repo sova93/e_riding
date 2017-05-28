@@ -28,7 +28,7 @@
                         {{competition.pk}}
                     </td>
                     <td class="col-md-5">
-                        {{ competition.place }}
+                        <a href="{% url "competition-pk" competition.pk %}">{{ competition.place }}</a>
                     </td>
                     <td >
                         {{ competition.begin | date:"DATETIME_FORMAT" }}

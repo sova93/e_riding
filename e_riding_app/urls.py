@@ -10,6 +10,7 @@ urlpatterns = [
     # competition
     url(r'competition/new', views.CompetitionNewView.as_view(), name="competition-new"),
     url(r'competitions', views.CompetitionsView.as_view(), name="competitions"),
+    url(r'competition/(?P<competition_pk>[\d]+)', views.CompetitionView.as_view(), name="competition-pk"),
     url(r'competition/(?P<competition_pk>[\d]+)/map', views.CompetitionMapView.as_view(), name="competition-map"),
     url(r'competition/(?P<competition_pk>[\d]+)/api/points', views.get_competition_points, name="competition-api-points"),
     # horse
