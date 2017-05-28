@@ -139,7 +139,7 @@ class HorseAddForm(ModelForm):
             "owner":"Владелец",
             "color":"Цвет",
             "breed":"Порода",
-            "stable":"Стойло",
+            "stable":"Конюшня",
             "birthday":"День рождения",
         }
         

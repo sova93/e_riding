@@ -137,7 +137,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(os.path.dirname(__file__), '../media/').replace('\\','/')
 MEDIA_URL = "/media/"
 
-INTERNAL_IPS = ('127.0.0.1', )
+INTERNAL_IPS = ('127.0.0.1', '192.168.100.206', '192.168.100.205', )
 
 LEAFLET_CONFIG = {
 

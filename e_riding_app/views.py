@@ -3,6 +3,8 @@ from django.urls.base import reverse_lazy
 from django.template.response import TemplateResponse
 from django.contrib.auth import authenticate
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 from django.http import HttpResponse
 from django.views import generic
 import django.core.exceptions
@@ -156,6 +158,11 @@ class AppLoginView(LoginView):
     form_class = AppLoginForm
     template_name = "auth.html"
     redirect_authenticated_user = True
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "%s. Вы успешно авторизовались" % self.request.user.username)
+        return response
 
 
 class AppLogoutView(LogoutView):

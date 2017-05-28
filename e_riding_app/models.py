@@ -20,11 +20,11 @@ class CustomUser(AbstractUser):
 
 
 class Horse(models.Model):
-    name = models.CharField(max_length=8)
+    name = models.CharField(max_length=128)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='horse_owner')
-    color = models.CharField(max_length=8)
-    breed = models.CharField(max_length=8)
-    stable = models.CharField(max_length=8)
+    color = models.CharField(max_length=128)
+    breed = models.CharField(max_length=128)
+    stable = models.CharField(max_length=128)
     birthday = models.DateField()  # field is missing on db scheme
 
     def __str__(self):
