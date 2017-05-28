@@ -11,7 +11,7 @@
         </div>
 
         <!-- Table -->
-        <table class="table">
+        <table class="table table-bordered table-hover">
             <thead>
             <tr>
                 <th>#</th>
@@ -24,7 +24,7 @@
             <tbody>
             {% for competition in competitions %}
                 <tr>
-                    <td>
+                    <td scope="row">
                         {{competition.pk}}
                     </td>
                     <td class="col-md-5">
@@ -36,7 +36,7 @@
                     <td >
                         {{ competition.close | date:"DATETIME_FORMAT" }}
                     </td>
-                    <td class="col-md-1">
+                    <td class="col-md-1 text-center">
                         <a href="{% url 'competition-map' competition.pk %}">
                             <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
                         </a>
