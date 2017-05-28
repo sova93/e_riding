@@ -3,29 +3,49 @@
 {% block TITLE %}список соревнований{% endblock TITLE %}
 
 {% block content %}
-    <h3 align="center">Список соревнований</h3>
-    <div class="col-xs-8 col-md-8 markRow">
-        <h4 align="center">Место проведения</h4>
-    </div>
-    <div class="col-xs-4 col-md-4 markRow">
-        <h4 align="center">Дата</h4>
-    </div>
-    {% for competition in competitions %}
-        <div class="row">
-            <div class="col-xs-7 col-md-7 markRow">
-                <li><a href="{% url 'teams-in-competition-pk' competition.id %}"> {{ competition.place }}</a></li>
-
-            </div>
-            <div class="col-xs-4 col-md-4 markRow">
-                <h5 align="center">{{ competition.begin }} - {{ competition.close }}</h5>
-            </div>
-            <div class="col-xs-1 col-md-1 markRow">
-                <a href="{% url 'competition-map' competition.pk %}">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-                </a>
-            </div>
+    <div class="panel panel-success">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Список соревнований</div>
+        <div class="panel-body">
+            <p>Panel Body</p>
         </div>
-    {% endfor %}
+
+        <!-- Table -->
+        <table class="table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Место</th>
+                <th>Начало</th>
+                <th>Конец</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for competition in competitions %}
+                <tr>
+                    <td>
+                        {{competition.pk}}
+                    </td>
+                    <td class="col-md-5">
+                        {{ competition.place }}
+                    </td>
+                    <td >
+                        {{ competition.begin | date:"DATETIME_FORMAT" }}
+                    </td>
+                    <td >
+                        {{ competition.close | date:"DATETIME_FORMAT" }}
+                    </td>
+                    <td class="col-md-1">
+                        <a href="{% url 'competition-map' competition.pk %}">
+                            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock content %}
 
 {% block right %}
