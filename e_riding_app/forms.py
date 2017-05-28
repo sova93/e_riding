@@ -1,7 +1,10 @@
 from django.forms import ModelForm, TextInput
 from .models import *
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
+
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
@@ -32,7 +35,7 @@ class UserAddForm(ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        super (UserAddForm, self).__init__(*args, **kwargs)
+        super(UserAddForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-md-3'
@@ -40,6 +43,20 @@ class UserAddForm(ModelForm):
         self.helper.attrs
 
         self.helper.add_input(Submit('submit', 'Зарегестрироваться'))
+
+
+class AppLoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(AppLoginForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-8'
+
+        self.fields["username"].label = _("Имя пользователя")
+        self.fields["password"].label = _("Пароль")
+
+        self.helper.add_input(Submit('submit', 'Войти'))
 
 
 class StepForm(ModelForm):

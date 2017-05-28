@@ -4,7 +4,7 @@
 }
 
 #header {
-    background-image: url(/static/bg.png);
+    background-image: url(/static/images/bg.png);
     height: 60px ;
     background-size: cover;
     margin-bottom: 5px;
@@ -26,7 +26,7 @@
 
 #footer {
 
-    background-image: url(/static/footer.png);
+    background-image: url(/static/images/footer.png);
     background-size: cover;
     /*min-height: 100px;*/
     /*position: absolute;*/
@@ -131,7 +131,7 @@
 .social-icon {
     width: 30px;
     height: 30px;
-    background: url(/static/f2.jpg) no-repeat;
+    background: url(/static/images/f2.jpg) no-repeat;
     display: inline-block;
     margin-right: 10px;
 }
@@ -139,7 +139,7 @@
 .social-icon-small  {
     width: 16px;
     height: 16px;
-    background: url(/static/f1.jpg) no-repeat;
+    background: url(/static/images/f1.jpg) no-repeat;
     display: inline-block;
     margin: 5px 6px 0 0;
 }

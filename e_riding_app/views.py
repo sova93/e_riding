@@ -9,9 +9,9 @@ import django.core.exceptions
 
 import json
 
-from . forms import CompetitionAddForm, PairAddForm, HorseAddForm, TeamAddForm, PairOnStartAddForm,\
-    DescriptionStepAddForm, UserAddForm
-from . models import Competition, Team, CustomUser, Horse, Pair, PairOnStart
+from .forms import CompetitionAddForm, PairAddForm, HorseAddForm, TeamAddForm, PairOnStartAddForm, \
+    DescriptionStepAddForm, UserAddForm, AppLoginForm
+from . models import Competition, Team, CustomUser, Horse, Pair, PairOnStart, News
 
 
 class _BaseViewMixin(object):
@@ -21,6 +21,11 @@ class _BaseViewMixin(object):
 
 class MainPageView(generic.TemplateView):
     template_name = "index.html"
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx["news"] = News.objects.order_by("-datetime").all()
+        return ctx
 
 
 class CompetitionsView(generic.ListView):
@@ -99,6 +104,7 @@ class UserNewView(_BaseViewMixin, generic.CreateView):
 
 
 class AppLoginView(LoginView):
+    form_class = AppLoginForm
     template_name = "auth.html"
     redirect_authenticated_user = True
 

@@ -1,17 +1,9 @@
 {% extends "base/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block TITLE %}Вход{% endblock TITLE %}
 
 {% block content %}
     <h3 align="center">Вход в систему </h3>
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <div class = "row">
-            <label><h4>Логин {{ form.username }}</h4></label>
-        </div>
-        <div class = "row">
-        <label><h4> Пароль {{ form.password }}</h4></label>
-        </div>
-        <input type="submit" value="Войти" />
-    </form>
+    {% crispy form form.helper %}
 {% endblock content %}

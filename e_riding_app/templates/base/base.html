@@ -28,20 +28,20 @@
 <body>
 <nav class="navbar navbar-default" id="header">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'index' %}">
-                <img class="pic_margin" alt="Brand" src="{% static "images/pic_nav.png" %}" height=55>
-            </a>
+        <div class="col-xs-2 col-md-2">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img class="pic_margin" alt="Brand" src="{% static "images/pic_nav.png" %}" height=55>
+                </a>
+            </div>
         </div>
         <div class="collapse navbar-collapse">
-
             <form class="navbar-form navbar-left">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
                 <button type="submit" class="btn btn-primary">Поиск</button>
             </form>
-
             {% include 'base/base_dropdown_menu.html' %}
             {% include 'base/base_dropdown_user.html' %}
         </div>
@@ -51,18 +51,20 @@
 <div class="container-fluid">
     <div class="row content_height">
         <div class="col-xs-2 col-md-2">
-            {% block links %}
-                <p> <a href="{% url 'competition-new' %}">Создание соревнований</a></p>
-                <p>  <a href="{% url 'competitions' %}">Список соревнований</a> </p>
-                <p>  <a href="{% url 'horse-new' %}">Добавление новой лошади</a> </p>
-                <p>  <a href="{% url 'horses' %}">Список лошадей</a> </p>
-                <p>  <a href="{% url 'pairs' %}">Список всех пар</a> </p>
-                <p>  <a href="{% url 'pair-new' %}">Создание пары</a> </p>
-                <p>  <a href="{% url 'team-new' %}">Добавление новой команды</a> </p>
-                <p>  <a href="{% url 'pair-on-start-new' %}">Добавление пары на старт</a> </p>
-                <p>  <a href="{% url 'description-step-new' %}">Добавление описания этапа</a> </p>
-                <p>  <a href="{% url 'statistic_way' %}">Статистика по треку</a> </p>
-            {% endblock links %}
+            <div class="list-group">
+                <a class="list-group-item list-group-item-success" href="{% url 'competition-new' %}">Создание соревнований</a>
+                <a class="list-group-item list-group-item-success" href="{% url 'competitions' %}">Список соревнований</a>
+                <a class="list-group-item list-group-item-success" href="{% url 'horse-new' %}">Добавление новой лошади</a>
+                <a class="list-group-item list-group-item-success" href="{% url 'horses' %}">Список лошадей</a>
+                <a class="list-group-item list-group-item-success" href="{% url 'pairs' %}">Список всех пар</a>
+                <a class="list-group-item list-group-item-success" href="{% url 'pair-new' %}">Создание пары</a>
+                <a class="list-group-item list-group-item-success" href="{% url 'team-new' %}">Добавление новой команды</a>
+                <a class="list-group-item list-group-item-success" href="{% url 'pair-on-start-new' %}">Добавление пары на старт</a>
+                <a class="list-group-item list-group-item-success" href="{% url 'description-step-new' %}">Добавление описания этапа</a>
+                <a class="list-group-item list-group-item-success" href="{% url 'statistic_way' %}">Статистика по треку</a>
+                {% block links %}
+                {% endblock links %}
+            </div>
         </div>
         <div class="col-xs-8 col-md-8 mark">
             {% block content_header %}

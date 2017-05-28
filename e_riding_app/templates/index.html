@@ -1,12 +1,38 @@
 {% extends "base/base.html" %}
+{% load static %}
 
 {% block TITLE %}index{% endblock TITLE %}
 
 {% block content_header %}
-    <div class="page-header">
-        <h1>Добро пожаловать: <small>{{ user }}</small></h1>
-    </div>
+    {#    <div class="page-header">#}
+    {#        <h1>Добро пожаловать: <small>{{ user }}</small></h1>#}
+    {#    </div>#}
 {% endblock %}
 
 {% block content %}
+    {% for new in news %}
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ new.title }}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object" src="{{ MEDIA_URL }}{{ new.image }}" height="175px" alt="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h5 class="media-heading">{{ new.datetime | date:"d/g/Y H:m" }}</h5>
+                        <p>
+
+                            {{ new.content }}
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endfor %}
+
 {% endblock content %}

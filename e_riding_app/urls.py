@@ -1,4 +1,7 @@
 from django.conf.urls import url
+from django.conf import settings
+from django.views.static import serve
+
 from . import views
 
 urlpatterns = [
@@ -36,3 +39,9 @@ urlpatterns = [
     # url(r'update_horse_view/(?P<horse_pk>[\d]+)', views.update_horse_view, name="update_horse_view"),
     ]
 
+if settings.DEBUG :
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+    ]

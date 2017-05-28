@@ -83,3 +83,10 @@ class Competition(models.Model):
     manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='competition_manager')
     teams = models.ManyToManyField(Team, related_name='competition_teams')
     judges = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='competition_judges')
+
+
+class News(models.Model):
+    title = models.CharField(max_length=256)
+    image = models.ImageField(upload_to="news_images/")
+    datetime = models.DateTimeField()
+    content = models.TextField()
