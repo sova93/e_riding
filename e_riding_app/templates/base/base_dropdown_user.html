@@ -1,6 +1,6 @@
-<form class="navbar-form navbar-left">
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle glyphicon glyphicon-user" {% if user.is_authenticated %}style="color:#00aa1a"{% endif %} type="button" data-toggle="dropdown">
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <button class="navbar-btn btn btn-primary dropdown-toggle glyphicon glyphicon-user" {% if user.is_authenticated %}style="color:#00aa1a"{% endif %} data-toggle="dropdown">
             {{ user.username }}
             <span class="caret"></span>
         </button>
@@ -14,5 +14,5 @@
             </li>
             <li><a href="{% url 'signup' %}">Регистрация</a></li>
         </ul>
-    </div>
-</form>
+    </li>
+</ul>

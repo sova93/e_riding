@@ -1,0 +1,33 @@
+<div class="navbar-left">
+    <div class="dropdown">
+        <button class="navbar-btn btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            Меню
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#">О нас</a></li>
+            <li class="dropdown-submenu">
+                <a href="#">Календарь соревнований</a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'competitions' %}">Все</a></li>
+                    <li><a href="#">Предстоящие</a></li>
+                    <li><a href="#">Активные</a></li>
+                    <li><a href="#">Прошедшие</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown-submenu">
+                <a href="#">Информация</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Организаторы</a></li>
+                    <li><a href="#">Ветеринары</a></li>
+                    <li><a href="#">Судьи</a></li>
+                    <li><a href="#">Статистики</a></li>
+                    <li><a href="#">Всадники</a></li>
+                    <li><a href="#">Лошади</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</div>

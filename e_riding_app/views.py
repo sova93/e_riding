@@ -26,23 +26,23 @@ class MainPageView(generic.TemplateView):
 class CompetitionsView(generic.ListView):
     model = Competition
     context_object_name = "competitions"
-    template_name = "competitions.html"
+    template_name = "competition/competitions.html"
 
 
 class HorsesView(generic.ListView):
     model = Horse
     context_object_name = "horses"
-    template_name = "horses.html"
+    template_name = "horse/horses.html"
 
 
 class PairsView(generic.ListView):
     model = Pair
     context_object_name = "pairs"
-    template_name = "pairs.html"
+    template_name = "pair/pairs.html"
 
 
 class TeamView(generic.TemplateView):
-    template_name = "teams.html"
+    template_name = "team/teams.html"
 
     def get_context_data(self, team_pk, **kwargs):
         ctx = super().get_context_data(team_pk=team_pk, **kwargs)
@@ -52,7 +52,7 @@ class TeamView(generic.TemplateView):
 
 
 class TeamInCompetitionView(generic.TemplateView):
-    template_name = "team_in_competition.html"
+    template_name = "team/team_in_competition.html"
 
     def get_context_data(self, competition_pk, **kwargs):
         ctx = super().get_context_data(competition_pk=competition_pk, **kwargs)
@@ -63,7 +63,7 @@ class TeamInCompetitionView(generic.TemplateView):
 
 class CompetitionNewView(_BaseViewMixin, generic.CreateView):
     form_class = CompetitionAddForm
-    template_name = "competition-new.html"
+    template_name = "competition/competition-new.html"
 
 
 class DescriptionStepNewViewMixin(_BaseViewMixin, generic.CreateView):
@@ -73,17 +73,17 @@ class DescriptionStepNewViewMixin(_BaseViewMixin, generic.CreateView):
 
 class HorseNewView(_BaseViewMixin, generic.CreateView):
     form_class = HorseAddForm
-    template_name = "horse_new.html"
+    template_name = "horse/horse_new.html"
 
 
 class TeamNewView(_BaseViewMixin, generic.CreateView):
     form_class = TeamAddForm
-    template_name = "team_new.html"
+    template_name = "team/team_new.html"
 
 
 class PairNewView(_BaseViewMixin, generic.CreateView):
     form_class = PairAddForm
-    template_name = "pair_new.html"
+    template_name = "pair/pair_new.html"
 
 
 class PairOnStartNewView(generic.CreateView):
@@ -114,7 +114,7 @@ class HorseDeleteView(generic.DeleteView):
 
 class HorseUpdateView(_BaseViewMixin, generic.UpdateView):
     form_class = HorseAddForm
-    template_name = "horse_update.html"
+    template_name = "horse/horse_update.html"
 
 
 class CompetitionMapView(_BaseViewMixin, generic.TemplateView):

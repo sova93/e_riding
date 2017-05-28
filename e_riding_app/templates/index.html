@@ -2,10 +2,11 @@
 
 {% block TITLE %}index{% endblock TITLE %}
 
-{% block content %}
-    <h1>Добро пожаловать: {{ user }}</h1>
-{% endblock content %}
+{% block content_header %}
+    <div class="page-header">
+        <h1>Добро пожаловать: <small>{{ user }}</small></h1>
+    </div>
+{% endblock %}
 
-{% block right %}
-    <h3>Реклама</h3>
-{% endblock right %}
+{% block content %}
+{% endblock content %}
