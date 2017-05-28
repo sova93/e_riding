@@ -113,6 +113,21 @@ class DescriptionStepAddForm(ModelForm):
     class Meta:
         model = DescriptionStep
         exclude = []
+        labels = {
+            "name": "Название",
+            "length": "Длина",
+            "owner": "Владелец",
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(DescriptionStepAddForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-8'
+
+        self.helper.add_input(Submit('submit', 'Создать'))
+
 
 
 class HorseAddForm(ModelForm):
@@ -163,10 +178,18 @@ class TeamAddForm(ModelForm):
         model = Team
         exclude = []
         labels = {
-            # "rider": "Всадник",
-            # "horse": "Лошадь",
-            # "cheerleader": "Команда поддержки"
+            "name": "Название",
+            "pairs": "Пары",
         }
+
+    def __init__(self, *args, **kwargs):
+        super(TeamAddForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-8'
+
+        self.helper.add_input(Submit('submit', 'Создать'))
 
 
 class PairOnStartAddForm(ModelForm):
@@ -178,3 +201,12 @@ class PairOnStartAddForm(ModelForm):
             "vet_card_on_start": "Веткарта",
             "cheerleader": "Группа поддержки",
         }
+
+    def __init__(self, *args, **kwargs):
+        super(PairOnStartAddForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-8'
+
+        self.helper.add_input(Submit('submit', 'Создать'))

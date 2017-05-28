@@ -11,7 +11,7 @@ import json
 
 from .forms import CompetitionAddForm, PairAddForm, HorseAddForm, TeamAddForm, PairOnStartAddForm, \
     DescriptionStepAddForm, UserAddForm, AppLoginForm
-from . models import Competition, Team, CustomUser, Horse, Pair, PairOnStart, News
+from . models import Competition, Team, CustomUser, Horse, Pair, PairOnStart, News, DescriptionStep
 
 
 class _BaseViewMixin(object):
@@ -71,6 +71,13 @@ class TeamView(generic.TemplateView):
         return ctx
 
 
+class TeamEditView(_BaseViewMixin, generic.UpdateView):
+    model = Team
+    pk_url_kwarg = "team_pk"
+    template_name = "team/team_form.html"
+    success_url = reverse_lazy("teams")
+
+
 class TeamInCompetitionView(generic.TemplateView):
     template_name = "team/team_in_competition.html"
 
@@ -86,10 +93,16 @@ class CompetitionNewView(_BaseViewMixin, generic.CreateView):
     template_name = "competition/competition_form.html"
 
 
-class DescriptionStepNewViewMixin(_BaseViewMixin, generic.CreateView):
+class DescriptionStepNewView(_BaseViewMixin, generic.CreateView):
     form_class = DescriptionStepAddForm
-    template_name = "description_step_new.html"
+    template_name = "description_step_form.html"
 
+
+class DescriptionStepEditView(_BaseViewMixin, generic.UpdateView):
+    form_class = DescriptionStepAddForm
+    model = DescriptionStep
+    pk_url_kwarg = "description_step_pk"
+    template_name = "description_step_form.html"
 
 class HorseNewView(_BaseViewMixin, generic.CreateView):
     form_class = HorseAddForm
@@ -104,7 +117,7 @@ class HorseView(_BaseViewMixin, generic.DetailView):
 
 class TeamNewView(_BaseViewMixin, generic.CreateView):
     form_class = TeamAddForm
-    template_name = "team/team_new.html"
+    template_name = "team/team_form.html"
 
 
 class PairNewView(_BaseViewMixin, generic.CreateView):
@@ -114,6 +127,7 @@ class PairNewView(_BaseViewMixin, generic.CreateView):
 
 
 class PairEditView(_BaseViewMixin, generic.UpdateView):
+    form_class = PairAddForm
     model = Pair
     pk_url_kwarg = "pair_pk"
     template_name = "pair/pair_form.html"
@@ -121,9 +135,16 @@ class PairEditView(_BaseViewMixin, generic.UpdateView):
 
 class PairOnStartNewView(generic.CreateView):
     form_class = PairOnStartAddForm
-    template_name = "pair_on_start_new.html"
+    template_name = "pair_on_start_form.html"
     context_object_name = "form"
     success_url = reverse_lazy("competitions")
+
+
+class PairOnStartEditView(_BaseViewMixin, generic.UpdateView):
+    form_class = PairOnStartNewView
+    model = PairOnStart
+    pk_url_kwarg = "pair_on_start_pk"
+    template_name = "pair_on_start_form.html"
 
 
 class UserNewView(_BaseViewMixin, generic.CreateView):

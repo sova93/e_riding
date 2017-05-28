@@ -1,15 +1,12 @@
 {% extends "base/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block TITLE %}Добавление новой команды{% endblock TITLE %}
 
 {% block content %}
     <h3>Добавление новой команды</h3>
     <h2>{{ state }}</h2>
-    <form action="{% url 'team-new' %}" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Добавить" />
-    </form>
+   {% crispy form form.helper %}
 {% endblock content %}
 
 {% block right %}

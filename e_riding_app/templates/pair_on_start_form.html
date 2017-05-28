@@ -1,0 +1,9 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block TITLE %}Пара на старте{% endblock TITLE %}
+
+{% block content %}
+    <h3>Регистрация пары {{ pair }} на старте</h3>
+    {% crispy form form.helper %}
+{% endblock content %}
