@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'competition/(?P<competition_pk>[\d]+)/teams', views.TeamInCompetitionView.as_view(), name="teams-in-competition-pk"),
     # pair
     url(r'pair/new', views.PairNewView.as_view(), name="pair-new"),
+    url(r'pair/(?P<pair_pk>[\d]+)/edit', views.PairEditView.as_view(), name="pair-edit"),
     url(r'pairs', views.PairsView.as_view(), name="pairs"),
     # description step
     url(r'description_step/new', views.DescriptionStepNewViewMixin.as_view(), name="description-step-new"),

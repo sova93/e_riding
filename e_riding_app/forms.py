@@ -145,7 +145,17 @@ class PairAddForm(ModelForm):
         labels = {
             "rider": "Всадник",
             "horse": "Лошадь",
+            "pair_on_start": "Пара на старте"
         }
+
+    def __init__(self, *args, **kwargs):
+        super(PairAddForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-8'
+
+        self.helper.add_input(Submit('submit', 'Создать'))
 
 
 class TeamAddForm(ModelForm):

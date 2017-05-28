@@ -58,6 +58,7 @@ class PairsView(generic.ListView):
     model = Pair
     context_object_name = "pairs"
     template_name = "pair/pairs.html"
+    success_url = reverse_lazy("pairs")
 
 
 class TeamView(generic.TemplateView):
@@ -94,6 +95,7 @@ class HorseNewView(_BaseViewMixin, generic.CreateView):
     form_class = HorseAddForm
     template_name = "horse/horse_form.html"
 
+
 class HorseView(_BaseViewMixin, generic.DetailView):
     model = Horse
     pk_url_kwarg = "horse_pk"
@@ -107,7 +109,14 @@ class TeamNewView(_BaseViewMixin, generic.CreateView):
 
 class PairNewView(_BaseViewMixin, generic.CreateView):
     form_class = PairAddForm
-    template_name = "pair/pair_new.html"
+    template_name = "pair/pair_form.html"
+    success_url = reverse_lazy("pairs")
+
+
+class PairEditView(_BaseViewMixin, generic.UpdateView):
+    model = Pair
+    pk_url_kwarg = "pair_pk"
+    template_name = "pair/pair_form.html"
 
 
 class PairOnStartNewView(generic.CreateView):

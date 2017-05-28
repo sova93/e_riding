@@ -1,0 +1,9 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block TITLE %}Создание пары{% endblock TITLE %}
+
+{% block content %}
+    <h3>Создание новой пары</h3>
+    {% crispy form form.helper %}
+{% endblock content %}
