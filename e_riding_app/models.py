@@ -36,6 +36,9 @@ class Team(models.Model):  # @TODO: review relations and fields in picture
     pairs = models.ManyToManyField("Pair", related_name="team_pair")  # connection changed!
      # cosiak so sviaz'u
 
+    def __str__(self):
+        return self.name
+
 
 class VetCard(models.Model):
     user = models.ForeignKey(CustomUser, related_name='vetcard_user')  # cosiak so sviaz'u

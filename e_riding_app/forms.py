@@ -33,7 +33,7 @@ class UserAddForm(ModelForm):
 
         }
         labels = {
-            "username": "Имя пользователя",
+            "username": "Логин",
             "first_name": "Имя",
             "last_name": "Фамилия",
             "email": "E-Mail адрес",
@@ -49,7 +49,7 @@ class UserAddForm(ModelForm):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-8'
-        self.helper.add_input(Submit('submit', 'Зарегестрироваться'))
+        self.helper.add_input(Submit('submit', 'Зарегистрироваться'))
 
 
 class AppLoginForm(AuthenticationForm):
@@ -60,7 +60,7 @@ class AppLoginForm(AuthenticationForm):
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-8'
 
-        self.fields["username"].label = _("Имя пользователя")
+        self.fields["username"].label = _("Логин")
         self.fields["password"].label = _("Пароль")
 
         self.helper.add_input(Submit('submit', 'Войти'))

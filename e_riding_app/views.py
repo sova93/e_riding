@@ -179,6 +179,7 @@ class HorseUpdateView(_BaseViewMixin, generic.UpdateView):
     model = Horse
     pk_url_kwarg = "horse_pk"
     template_name = "horse/horse_form.html"
+    success_url = reverse_lazy("horses")
 
 
 class CompetitionMapView(_BaseViewMixin, generic.TemplateView):

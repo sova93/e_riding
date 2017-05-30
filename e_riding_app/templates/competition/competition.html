@@ -18,7 +18,7 @@
             Имя пользователя: {{ competition.manager.username }}
         </div>
         <div>
-            ФИО: {{ competition.manager.first_name }} // {{ competition.manager.last_name }}
+            ФИО: {{ competition.manager.first_name }}  {{ competition.manager.last_name }}
         </div>
     </div>
     <div class="container-fluid">
@@ -39,26 +39,26 @@
             <div class="col-xs-2">
                 <h3>Судьи</h3>
                 {% for judge in competition.judges.all %}
-                    <div>{{ judge.first_name }} // {{ judge.last_name }}</div>
+                    <div>{{ judge.first_name }}  {{ judge.last_name }}</div>
                 {% endfor %}
             </div>
             <div class="col-xs-3">
                 <h3>Хронометристы</h3>
                 {% for timer in competition.timekeepers.all %}
-                    <div>{{ timer.first_name }} // {{ timer.last_name }}</div>
+                    <div>{{ timer.first_name }}  {{ timer.last_name }}</div>
                 {% endfor %}
             </div>
             <div class="col-xs-2">
                 <h3>Статистики</h3>
                 {% for stat in competition.stats.all %}
-                    <div>{{ stat.first_name }} // {{ stat.last_name }}</div>
+                    <div>{{ stat.first_name }}  {{ stat.last_name }}</div>
                 {% endfor %}
 
             </div>
             <div class="col-xs-3">
                 <h3>Ветеренары</h3>
                 {% for vet in competition.vets.all %}
-                    <div>{{ vet.first_name }} // {{ vet.last_name }}</div>
+                    <div>{{ vet.first_name }}  {{ vet.last_name }}</div>
                 {% endfor %}
 
             </div>
