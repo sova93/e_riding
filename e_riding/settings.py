@@ -125,7 +125,7 @@ USE_L10N = False
 
 USE_TZ = True
 
-DATETIME_FORMAT = "d/g/Y H:m"
+DATETIME_FORMAT = "d/m/Y H:i"
 DATE_FORMAT = "d/m/Y"
 
 
